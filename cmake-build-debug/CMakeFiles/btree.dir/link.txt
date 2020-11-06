@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libbtree.a  CMakeFiles/btree.dir/src/pagemanager.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libbtree.a

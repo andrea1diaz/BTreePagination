@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/btree_pagination/src/pagemanager.cpp
+pagemanager.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/btree_pagination/src/pagemanager.h
+cstdlib
+-
+fstream
+-
+iostream
+-
+string
+-
+
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/btree_pagination/src/pagemanager.h
+cstdlib
+-
+fstream
+-
+iostream
+-
+string
+-
+
