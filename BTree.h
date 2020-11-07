@@ -155,6 +155,7 @@ public:
             print(child, level + 1, out);
           }
           out << ptr.keys[i];
+          cout<<endl;
         }
         if (ptr.children[i]) {
           BTreePage child = readPage(ptr.children[i]);
@@ -303,7 +304,7 @@ public:
       for (int k = 0; k < level; k++) {
         std::cout << "    ";
       }
-      std::cout << ptr.keys[i] << "\n";
+       ptr.keys[i].print();
     }
     if (ptr.children[i + 1]) {
       BTreePage child = readPage(ptr.children[i + 1]);

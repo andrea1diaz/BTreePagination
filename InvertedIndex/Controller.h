@@ -39,8 +39,7 @@ public:
 		}
 
 		this->files++;
-
-		/*for(auto it:Dictionary){
+/*for(auto it:Dictionary){
 			std::cout<<"key: "<<it.first<< " values: ";
 			for(auto it2:it.second){
 				for(auto it3:it2.definitions){
@@ -50,11 +49,9 @@ public:
 			}
 			std::cout<<std::endl;
 		}*/
-
 	}
 	
 	void write(){
-		long cont = 0;
 		for (auto it:Dictionary){
 			char key[25];
 			strcpy(key,it.first.c_str());
@@ -62,31 +59,15 @@ public:
 			for( int i=0;i<6;i++){
 				value[i]=it.second[i];
 			}
-			bt->insert(Record(cont,key,value));
-			cont++;
+			bt->insert(Record(key,value));
 		}
 	}
 
 	void recover(std::string language_file) {
-        PageManager record_manager ("index.dat");
-
-        std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("BTree.index");
+        std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("index.dat");
         BTree<Record, BTREE_ORDER> bt(pm);
-        BTree<Record, BTREE_ORDER>::iterator iter = bt.begin();
-        BTree<Record, BTREE_ORDER>::iterator end = bt.end();
-        for (; iter != end; iter++) {
-            auto record = *iter;
-            Record r;
-            record_manager.recover(record.id, r);
-            std::cout << record.id << " " << record.key << " ";
-            for (auto& node: record.values) {
-                for (auto& pos : node.definitions) {
-                    std::cout << pos << " ";
-                }
-                std::cout << "||";
-            }
-            std::cout << "\n";
-        }
+        bt.print_tree();
+
 
     }
 

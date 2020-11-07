@@ -40,3 +40,5 @@ int main () {
   c.recover(".");
   int a = 0;
 }
+
+//g++ btree_test.cpp BTree.h DataBase.h Page.h PageManager.cpp PageManager.h InvertedIndex/Controller.h InvertedIndex/node.h InvertedIndex/node.cpp InvertedIndex/record.h 
