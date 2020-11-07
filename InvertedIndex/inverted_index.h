@@ -12,11 +12,6 @@
 class inverted_index {
 public:
 
-	/*void add(std::string filename, std::string word);
-	void add(std::string filename, std::vector<std::string> word_vector);
-    void find(std::string word);
-	void save_to(std::string filename);
-	*/
 	void execute(std::string filename){
 		std::ifstream file(filename);
 		std::string key,value;
