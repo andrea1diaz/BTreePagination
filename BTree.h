@@ -155,7 +155,7 @@ public:
             print(child, level + 1, out);
           }
           out << ptr.keys[i];
-          cout<<endl;
+          std::cout<<std::endl;
         }
         if (ptr.children[i]) {
           BTreePage child = readPage(ptr.children[i]);
@@ -174,6 +174,7 @@ public:
         iterator(BTree* instance, BTreePage start){
             root = std::experimental::make_optional(start);
         }
+        
         iterator(BTree* instance, BTreePage start, int count) : instance(instance) {
             root = std::experimental::make_optional(start);
             pos = count;

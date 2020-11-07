@@ -41,7 +41,12 @@ class Record{
     }
 
     bool operator==(const Record &other) const{
-        return strcmp(other.key,this->key);
+        for(int i=0;i<25;i++){
+            if(key[i]!=other.key[i]){
+                return false;
+            }
+        }
+        return true;
     }
 
     Record& operator=(const Record& other ){
