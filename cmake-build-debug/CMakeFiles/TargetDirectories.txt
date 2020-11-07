@@ -1,0 +1,3 @@
+D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/cmake-build-debug/CMakeFiles/BTreePagination.dir
+D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/cmake-build-debug/CMakeFiles/rebuild_cache.dir

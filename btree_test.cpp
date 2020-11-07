@@ -1,9 +1,10 @@
 #include "BTree.h"
-#include "PageManager.cpp"
-#include "InvertedIndex/inverted_index.h"
+#include "PageManager.h"
+#include "InvertedIndex/Controller.h"
 
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 // PAGE_SIZE 64 bytes
 #define PAGE_SIZE  64 
@@ -20,7 +21,7 @@
 #define BTREE_ORDER 4
 
 int main () {
-  bool trunc_file = true;
+  /*bool trunc_file = true;
   std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("BTree.index", trunc_file);
   std::cout << "PAGE_SIZE: " << PAGE_SIZE << std::endl;
   std::cout << "BTREE_ORDER: " << BTREE_ORDER << std::endl;
@@ -32,5 +33,10 @@ int main () {
   }
   std::ostringstream out;
   bt.print(out);
-  std::sort(values.begin(), values.end());
+  std::sort(values.begin(), values.end());*/
+  Controller c;
+  c.execute("data/French.txt");
+  c.write();
+  c.recover(".");
+  int a = 0;
 }

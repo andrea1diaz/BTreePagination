@@ -7,6 +7,7 @@ public:
     long data[BTREE_ORDER + 2];
 
     long pageId{-1};
+    long next_id{-1};
     long nKeys{0};
     bool isLeaf{true};
 
