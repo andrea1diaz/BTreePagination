@@ -1,8 +1,6 @@
 #pragma once
-
-
 #include "node.h"
-#include "Page.h"
+#include "PageIndex.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -58,7 +56,7 @@ public:
 	
 	void write(){
 		std::ofstream file("index.dat");
-		Page page;
+		PageIndex page;
 		int cont=0;
 		for (auto it:Dictionary){
 			if(cont==20){ 
@@ -84,7 +82,7 @@ public:
 	inverted_index()=default;
 
 private:
-	Page* root;
+	PageIndex* root;
 	std::unordered_map<std::string, node[6]> Dictionary;
 	std::vector<std::string> filelist;
 	int files=0;

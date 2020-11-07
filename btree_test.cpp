@@ -1,9 +1,6 @@
-
-// #include <utecdf/column/column.hpp>
-
-#include <gtest/gtest.h>
-#include <BTree.h>
-#include <PageManager.h>
+#include "BTree.h"
+#include "PageManager.h"
+#include "InvertedIndex/inverted_index.h"
 
 
 // PAGE_SIZE 64 bytes
@@ -20,11 +17,7 @@
 //#define BTREE_ORDER   ((PAGE_SIZE - (2 * sizeof(long) + sizeof(int) +  2 * sizeof(long)) ) /  (sizeof(int) + sizeof(long)))
 #define BTREE_ORDER 4
 
-struct DiskBasedBtree : public ::testing::Test
-{
-};
-
-TEST_F(DiskBasedBtree, IndexingRandomElements) {
+int main () {
   bool trunc_file = true;
   std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("BTree.index", trunc_file);
   std::cout << "PAGE_SIZE: " << PAGE_SIZE << std::endl;
@@ -39,20 +32,4 @@ TEST_F(DiskBasedBtree, IndexingRandomElements) {
   bt.print(out);
   std::sort(values.begin(), values.end());
   EXPECT_EQ(out.str(), values.c_str());
-}
- 
-TEST_F(DiskBasedBtree, Persistence) {
-  std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("BTree.index");
-  BTree<char, BTREE_ORDER> bt(pm);
-  std::string values = "1234567890=";
-  for(auto c : values) {
-    bt.insert(c);
-  }
-  bt.print_tree();
-
-  std::ostringstream out;
-  bt.print(out);
-  std::string all_values = "qwertyuioplkjhgfdsazxcvbnm1234567890=";
-  std::sort(all_values.begin(), all_values.end());
-  EXPECT_EQ(out.str(), all_values.c_str());
 }
