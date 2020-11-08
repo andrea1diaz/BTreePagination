@@ -10,8 +10,9 @@
 #include "../PageManager.h"
 #include "record.h"
 
-#define BTREE_ORDER 4
+#define BTREE_ORDER 3
 #define PAGE_SIZE  64
+//#define BTREE_ORDER   ((PAGE_SIZE - (2 * sizeof(long) + sizeof(int) +  2 * sizeof(long)) ) /  (sizeof(int) + sizeof(long)))
 
 class Controller {
 public:
@@ -37,7 +38,6 @@ public:
 		}
 
 		this->files++;
-		std::cout<<filelist.size();
 		filelist.push_back(filename);
 	}
 	
@@ -56,8 +56,6 @@ public:
 	void recover(std::string word,int archivo ) {
         std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("index.dat");
         BTree<Record, BTREE_ORDER> bt(pm);
-        //bt.print_tree();
-		//bt.print_tree();
 		Record to_find;
 		strcpy(to_find.key,word.c_str());
 		auto beg =bt.find(to_find);
@@ -68,14 +66,13 @@ public:
 			for (int i=0;i<10;i++){
 				if(to_find.values[archivo].definitions[i]!=-1){
 					file.seekg(to_find.values[archivo].definitions[i],std::ios::beg);
-					file>>logger;
+					getline(file, logger);
 					std::cout<<logger<<", ";					
 				}
 			}
 
 			std::cout <<'\n';
 		}
-
 		
     }
 
@@ -83,6 +80,7 @@ public:
         bool trunc_file = true;
         auto pm = std::make_shared<PageManager>("index.dat", trunc_file);
         bt = new BTree<Record, BTREE_ORDER>(pm);
+        std::cout << "BTREE ORDER: " << BTREE_ORDER << std::endl;
 	}
 
 private:
