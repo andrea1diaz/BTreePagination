@@ -1,46 +1,56 @@
 #include <cstring>
 #include "node.h"
-
+#define key_size 40
 
 class Record{
-public:
-    long id;
-    char key[25];
+    public:
+    char key[key_size];
     node values[6];
-    Record( char _key[25],node _values[6], long _id){
-        for(int i=0;i<25;i++ ){
+    Record( char _key[key_size],node _values[6] ){
+        for(int i=0;i<key_size;i++ ){
             key[i]=_key[i];
         }
         for(int i=0;i<6;i++ ){
             values[i]=_values[i];
         }
 
-        id = _id;
-
     }
     Record(){
-        strncpy(key,"",25);
+        strncpy(key,"",key_size);
     }
     bool operator<(const Record &other){
-        std::string s = this->key;
-        std::string o = other.key;
-        return (s.compare(o) > 0);
+        for (int i=0;i<key_size;i++){
+            if (this->key[i]>other.key[i]){
+                return false;
+            }else if(this->key[i]<other.key[i]){
+                return true;
+            }
+        }
+        return false;
     }
 
     bool operator>(const Record &other){
-        std::string s = this->key;
-        std::string o = other.key;
-        return (s.compare(o) < 0);
+        for (int i=0;i<key_size;i++){
+            if (this->key[i]<other.key[i]){
+                return false;
+            }else if(this->key[i]>other.key[i]){
+                return true;
+            }
+        }
+        return false;
     }
 
     bool operator==(const Record &other) const{
-        std::string s = this->key;
-        std::string o = other.key;
-        return s == o;
+        for(int i=0;i<key_size;i++){
+            if(key[i]!=other.key[i]){
+                return false;
+            }
+        }
+        return true;
     }
 
     Record& operator=(const Record& other ){
-        for(int i=0;i<25;i++ ){
+        for(int i=0;i<key_size;i++ ){
             key[i]=other.key[i];
         }
         for(int i=0;i<6;i++ ){

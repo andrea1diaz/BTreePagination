@@ -1,11 +1,9 @@
 file(REMOVE_RECURSE
-  "BTreePagination.exe"
-  "BTreePagination.exe.manifest"
+  "BTreePagination"
   "BTreePagination.pdb"
-  "CMakeFiles/BTreePagination.dir/InvertedIndex/node.cpp.obj"
-  "CMakeFiles/BTreePagination.dir/PageManager.cpp.obj"
-  "CMakeFiles/BTreePagination.dir/btree_test.cpp.obj"
-  "libBTreePagination.dll.a"
+  "CMakeFiles/BTreePagination.dir/InvertedIndex/node.cpp.o"
+  "CMakeFiles/BTreePagination.dir/PageManager.cpp.o"
+  "CMakeFiles/BTreePagination.dir/btree_test.cpp.o"
 )
 
 # Per-language clean rules from dependency scanning.

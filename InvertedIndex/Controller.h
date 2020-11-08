@@ -10,8 +10,9 @@
 #include "../PageManager.h"
 #include "record.h"
 
-#define BTREE_ORDER 4
+#define BTREE_ORDER 3
 #define PAGE_SIZE  64
+//#define BTREE_ORDER   ((PAGE_SIZE - (2 * sizeof(long) + sizeof(int) +  2 * sizeof(long)) ) /  (sizeof(int) + sizeof(long)))
 
 Record r;
 
@@ -22,15 +23,13 @@ public:
 		std::ifstream file(filename);
 		std::string key,value;
 		while (!file.eof()){
-			
 			getline(file,key,'\t');
 			int address=file.tellg();
 			node temp;
 			temp.insert(address);
 			getline(file,value);
-			char key_char[25];
+			char key_char[40];
 			strcpy(key_char,key.c_str()); 
-			std::cout<<"key: "<<key<<" value: "<<value<<"\n";
 			if (this->Dictionary.find(key_char)==this->Dictionary.end()){
 				this->Dictionary[key_char];				
 				this->Dictionary[key_char][files]=temp;
@@ -41,16 +40,7 @@ public:
 		}
 
 		this->files++;
-/*for(auto it:Dictionary){
-			std::cout<<"key: "<<it.first<< " values: ";
-			for(auto it2:it.second){
-				for(auto it3:it2.definitions){
-					std::cout<<it3<<" ";
-				}
-
-			}
-			std::cout<<std::endl;
-		}*/
+		filelist.push_back(filename);
 	}
 	
 	void write(){
@@ -72,33 +62,34 @@ public:
         }
 	}
 
-	void recover(std::string language_file) {
-        /*PageManager record_manager("index.dat");
-	    std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("BTree.index");
+void recover(std::string word,int archivo ) {
+        std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("index.dat");
         BTree<Record, BTREE_ORDER> bt(pm);
-        //bt.print_tree();
-		//bt.print_tree();
 		Record to_find;
-		strcpy(to_find.key,"aardvark");
-		auto beg = bt.find(to_find);
-*/
-        PageManager record_manager("index.dat");
-        std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("BTree.index");
-        BTree<Record, BTREE_ORDER> bt(pm);
+		strcpy(to_find.key,word.c_str());
+		auto beg =bt.find(to_find);
+		to_find = (*beg);
+		if (strcmp(to_find.key,word.c_str())==0){
+			std::fstream file(filelist[archivo]);
+			std::string logger;
+			for (int i=0;i<10;i++){
+				if(to_find.values[archivo].definitions[i]!=-1){
+					file.seekg(to_find.values[archivo].definitions[i],std::ios::beg);
+					getline(file, logger);
+					std::cout<<logger<<", ";					
+				}
+			}
 
-        BTree<Record, BTREE_ORDER>::iterator iter = bt.find(r);
-
-        auto record = *iter;
-        Record to_find;
-        record_manager.recover(record.id, to_find);
-        std::cout << record.id << to_find.key << std::endl;
-		int a = 0;
+			std::cout <<'\n';
+		}
+		
     }
 
 	Controller(){
         bool trunc_file = true;
         auto pm = std::make_shared<PageManager>("BTree.index", trunc_file);
         bt = new BTree<Record, BTREE_ORDER>(pm);
+        std::cout << "BTREE ORDER: " << BTREE_ORDER << std::endl;
 	}
 
 private:
