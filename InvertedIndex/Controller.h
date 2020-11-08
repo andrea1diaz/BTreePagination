@@ -17,18 +17,20 @@ class Controller {
 public:
 
 	void execute(std::string filename){
+		std::cout<<"start"<<'\n';
 		std::ifstream file(filename);
 		std::string key,value;
+		int cont=0;
 		while (!file.eof()){
-			
+			std::cout<<cont<<"\n";
+			cont++;
 			getline(file,key,'\t');
 			int address=file.tellg();
 			node temp;
 			temp.insert(address);
 			getline(file,value);
-			char key_char[25];
+			char key_char[40];
 			strcpy(key_char,key.c_str()); 
-			std::cout<<"key: "<<key<<" value: "<<value<<"\n";
 			if (this->Dictionary.find(key_char)==this->Dictionary.end()){
 				this->Dictionary[key_char];				
 				this->Dictionary[key_char][files]=temp;
@@ -37,18 +39,11 @@ public:
 				this->Dictionary[key_char][files].insert(address);
 			}
 		}
+		std::cout<<"finished"<<std::endl;
 
 		this->files++;
-/*for(auto it:Dictionary){
-			std::cout<<"key: "<<it.first<< " values: ";
-			for(auto it2:it.second){
-				for(auto it3:it2.definitions){
-					std::cout<<it3<<" ";
-				}
-
-			}
-			std::cout<<std::endl;
-		}*/
+		std::cout<<filelist.size();
+		filelist.push_back(filename);
 	}
 	
 	void write(){
@@ -63,20 +58,33 @@ public:
 		}
 	}
 
-	void recover(std::string language_file) {
+	void recover(std::string word,int archivo ) {
         std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("index.dat");
         BTree<Record, BTREE_ORDER> bt(pm);
         //bt.print_tree();
 		//bt.print_tree();
 		Record to_find;
-		strcpy(to_find.key,"aardvark");
+		strcpy(to_find.key,word.c_str());
 		auto beg =bt.find(to_find);
-		(*beg).print();
+		to_find = (*beg);
+		if (strcmp(to_find.key,word.c_str())==0){
+			std::fstream file(filelist[archivo]);
+			std::string logger;
+			for (int i=0;i<10;i++){
+				if(to_find.values[archivo].definitions[i]!=-1){
+					file.seekg(to_find.values[archivo].definitions[i],std::ios::beg);
+					file>>logger;
+					std::cout<<logger<<", ";					
+				}
+			}
+			std::cout<<"\n";
+		}
 
+		
     }
 
 	Controller(){
-        bool trunc_file = true;
+        bool trunc_file = false;
         auto pm = std::make_shared<PageManager>("index.dat", trunc_file);
         bt = new BTree<Record, BTREE_ORDER>(pm);
 	}

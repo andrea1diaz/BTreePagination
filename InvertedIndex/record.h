@@ -1,13 +1,13 @@
 #include <cstring>
 #include "node.h"
-
+#define key_size 40
 
 class Record{
     public:
-    char key[25];
+    char key[key_size];
     node values[6];
-    Record( char _key[25],node _values[6] ){
-        for(int i=0;i<25;i++ ){
+    Record( char _key[key_size],node _values[6] ){
+        for(int i=0;i<key_size;i++ ){
             key[i]=_key[i];
         }
         for(int i=0;i<6;i++ ){
@@ -16,10 +16,10 @@ class Record{
 
     }
     Record(){
-        strncpy(key,"",25);
+        strncpy(key,"",key_size);
     }
     bool operator<(const Record &other){
-        for (int i=0;i<25;i++){
+        for (int i=0;i<key_size;i++){
             if (this->key[i]>other.key[i]){
                 return false;
             }else if(this->key[i]<other.key[i]){
@@ -30,7 +30,7 @@ class Record{
     }
 
     bool operator>(const Record &other){
-        for (int i=0;i<25;i++){
+        for (int i=0;i<key_size;i++){
             if (this->key[i]<other.key[i]){
                 return false;
             }else if(this->key[i]>other.key[i]){
@@ -41,7 +41,7 @@ class Record{
     }
 
     bool operator==(const Record &other) const{
-        for(int i=0;i<25;i++){
+        for(int i=0;i<key_size;i++){
             if(key[i]!=other.key[i]){
                 return false;
             }
@@ -50,7 +50,7 @@ class Record{
     }
 
     Record& operator=(const Record& other ){
-        for(int i=0;i<25;i++ ){
+        for(int i=0;i<key_size;i++ ){
             key[i]=other.key[i];
         }
         for(int i=0;i<6;i++ ){

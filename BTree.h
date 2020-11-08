@@ -252,39 +252,18 @@ public:
     iterator find (BTreePage &ptr, int level, const T &value) {
         int i;
 
-        for (i = ptr.nKeys - 1; i >= 0; i--) {
-            if (ptr.children[i + 1]) {
-                BTreePage child = readPage (ptr.children [i + 1]);
-
-                if (ptr.keys[i] > value) {
-                    child = readPage (ptr.children [i - 1]);
-                    find (child, level + 1, value);
-                }
-
-                else {
-                    find(child, level + 1, value);
-                }
-            }
-
+        for (i = 0; i < ptr.nKeys; i++) {
             if (ptr.keys[i] > value) {
-                return iterator (this);
+                break;
             }
-
-            if (ptr.keys[i] < value) {
-                return iterator (this);
-            }
-
-            if (ptr.keys[i] == value) {
-                return iterator (this, ptr);
-            }
-
+        }   
+        if (ptr.isLeaf || ptr.keys[i]==value){     
+            return iterator(this,ptr,i);                 
+        }else{
+            BTreePage child = readPage(ptr.children[i ]);
+            return find(child,level+1,value);
         }
 
-        if (ptr.children[i + 1]) {
-            BTreePage child = readPage(ptr.children[i + 1]);
-
-            find(child, level + 1, value);
-        }
     }
 
 

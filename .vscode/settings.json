@@ -62,6 +62,17 @@
         "streambuf": "cpp",
         "thread": "cpp",
         "typeindex": "cpp",
-        "typeinfo": "cpp"
+        "typeinfo": "cpp",
+        "any": "cpp",
+        "cmath": "cpp",
+        "memory": "cpp",
+        "numeric": "cpp",
+        "optional": "cpp",
+        "random": "cpp",
+        "utility": "cpp",
+        "limits": "cpp",
+        "new": "cpp",
+        "valarray": "cpp",
+        "variant": "cpp"
     }
 }

@@ -35,9 +35,19 @@ int main () {
   bt.print(out);
   std::sort(values.begin(), values.end());*/
   Controller c;
-  c.execute("data/French.txt");
+  //c.execute("data/French.txt");
+  c.execute("data/German.txt");
+  c.execute("data/Italian.txt");
+  c.execute("data/Portuguese.txt");
+  c.execute("data/Spanish.txt");
+  std::cout<<"paso execute"<<std::endl;
   c.write();
-  c.recover(".");
+  c.recover("abandoned",0);
+  c.recover("abandoned",1);
+  c.recover("abandoned",2);
+  c.recover("abandoned",3);
+  c.recover("abandoned",4);
+  
   int a = 0;
 }
 

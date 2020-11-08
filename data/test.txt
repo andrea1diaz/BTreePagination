@@ -1,0 +1,4 @@
+aardvark	cerdo hormiguero
+aardvark	oso hormiguero[Noun]
+aardvarks	cerdos hormigueros
+aardvarks	osos hormigueros 
