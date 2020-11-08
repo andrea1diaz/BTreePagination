@@ -14,6 +14,8 @@
 #define PAGE_SIZE  64
 //#define BTREE_ORDER   ((PAGE_SIZE - (2 * sizeof(long) + sizeof(int) +  2 * sizeof(long)) ) /  (sizeof(int) + sizeof(long)))
 
+Record r;
+
 class Controller {
 public:
 
@@ -42,18 +44,25 @@ public:
 	}
 	
 	void write(){
-		for (auto it:Dictionary){
-			char key[25];
-			strcpy(key,it.first.c_str());
-			node value[6];
-			for( int i=0;i<6;i++){
-				value[i]=it.second[i];
-			}
-			bt->insert(Record(key,value));
-		}
+        PageManager record_manager ("index.dat");
+        long id = 0;
+        for (auto it:Dictionary){
+            char key[25];
+            strcpy(key,it.first.c_str());
+            node value[6];
+            for( int i=0;i<6;i++){
+                value[i]=it.second[i];
+            }
+            record_manager.save(id, value);
+            bt->insert(Record(key, value, id));
+            id++;
+            if (id == 1) {
+                r = Record(key, value, id - 1);
+            }
+        }
 	}
 
-	void recover(std::string word,int archivo ) {
+void recover(std::string word,int archivo ) {
         std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("index.dat");
         BTree<Record, BTREE_ORDER> bt(pm);
 		Record to_find;
@@ -78,7 +87,7 @@ public:
 
 	Controller(){
         bool trunc_file = true;
-        auto pm = std::make_shared<PageManager>("index.dat", trunc_file);
+        auto pm = std::make_shared<PageManager>("BTree.index", trunc_file);
         bt = new BTree<Record, BTREE_ORDER>(pm);
         std::cout << "BTREE ORDER: " << BTREE_ORDER << std::endl;
 	}
