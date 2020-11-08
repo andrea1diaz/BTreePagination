@@ -17,13 +17,9 @@ class Controller {
 public:
 
 	void execute(std::string filename){
-		std::cout<<"start"<<'\n';
 		std::ifstream file(filename);
 		std::string key,value;
-		int cont=0;
 		while (!file.eof()){
-			std::cout<<cont<<"\n";
-			cont++;
 			getline(file,key,'\t');
 			int address=file.tellg();
 			node temp;
@@ -39,7 +35,6 @@ public:
 				this->Dictionary[key_char][files].insert(address);
 			}
 		}
-		std::cout<<"finished"<<std::endl;
 
 		this->files++;
 		std::cout<<filelist.size();
@@ -77,14 +72,15 @@ public:
 					std::cout<<logger<<", ";					
 				}
 			}
-			std::cout<<"\n";
+
+			std::cout <<'\n';
 		}
 
 		
     }
 
 	Controller(){
-        bool trunc_file = false;
+        bool trunc_file = true;
         auto pm = std::make_shared<PageManager>("index.dat", trunc_file);
         bt = new BTree<Record, BTREE_ORDER>(pm);
 	}

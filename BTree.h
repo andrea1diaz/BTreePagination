@@ -3,7 +3,8 @@
 #include "PageManager.h"
 #include "Page.h"
 #include <memory>
-#include <experimental/optional>
+#include <optional>
+
 
 
 
@@ -164,24 +165,24 @@ public:
     }
 public:
     class iterator : std::iterator< std::forward_iterator_tag,T,T,T*,T& > {
-        std::experimental::optional<BTreePage> root;
-        std::experimental::optional<BTreePage> ending;
+        std::optional<BTreePage> root;
+        std::optional<BTreePage> ending;
         int pos	= 0;
         int pos_end	= 0;
         BTree<T, BTREE_ORDER>* instance;
     public:
         iterator(BTree* instance) : instance(instance){}
         iterator(BTree* instance, BTreePage start){
-            root = std::experimental::make_optional(start);
+            root = std::make_optional(start);
         }
         
         iterator(BTree* instance, BTreePage start, int count) : instance(instance) {
-            root = std::experimental::make_optional(start);
+            root = std::make_optional(start);
             pos = count;
         }
         iterator(BTree* instance, BTreePage start, int count, BTreePage end, int count_end) : instance(instance){
-            root = std::experimental::make_optional(start);
-            ending = std::experimental::make_optional(end);
+            root = std::make_optional(start);
+            ending = std::make_optional(end);
             pos = count;
             pos_end = count_end;
         }
@@ -199,12 +200,12 @@ public:
 
             // if pos++ is at the end BTreePage
             if (ending && ending.value().keys[pos_end] == root.value().keys[pos]) {
-                root = std::experimental::nullopt;
+                root = std::nullopt;
                 return *this;
             }
 
             // id pos++ is in the next BTreePage
-            root = std::experimental::make_optional(instance->readPage(root.value().children[pos]));
+            root = std::make_optional(instance->readPage(root.value().children[pos]));
             return *this;
         }
         iterator operator++(int){

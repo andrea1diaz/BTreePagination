@@ -6,19 +6,19 @@
 
 #IncludeRegexTransform: 
 
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/BTree.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/BTree.h
 PageManager.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/PageManager.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/PageManager.h
 Page.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/Page.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/Page.h
 memory
 -
-experimental/optional
+optional
 -
 
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/InvertedIndex/Controller.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/InvertedIndex/Controller.h
 node.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/InvertedIndex/node.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/InvertedIndex/node.h
 iostream
 -
 fstream
@@ -32,25 +32,25 @@ vector
 cstring
 -
 ../BTree.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/BTree.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/BTree.h
 ../PageManager.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/PageManager.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/PageManager.h
 record.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/InvertedIndex/record.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/InvertedIndex/record.h
 
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/InvertedIndex/node.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/InvertedIndex/node.h
 iostream
 -
 
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/InvertedIndex/record.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/InvertedIndex/record.h
 cstring
 -
 node.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/InvertedIndex/node.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/InvertedIndex/node.h
 
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/Page.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/Page.h
 
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/PageManager.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/PageManager.h
 cstdlib
 -
 fstream
@@ -60,13 +60,13 @@ iostream
 string
 -
 
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/btree_test.cpp
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/btree_test.cpp
 BTree.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/BTree.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/BTree.h
 PageManager.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/PageManager.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/PageManager.h
 InvertedIndex/Controller.h
-D:/Documents/Universidad/Computer Science/Ciclo 8/EDA/BTreePagination/InvertedIndex/Controller.h
+/Users/andreadiaz/Library/Mobile Documents/com~apple~CloudDocs/utec/EDA/BTreePagination/InvertedIndex/Controller.h
 iostream
 -
 sstream

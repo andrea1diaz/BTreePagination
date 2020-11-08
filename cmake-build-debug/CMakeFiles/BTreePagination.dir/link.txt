@@ -1,3 +1,1 @@
-"D:\Program Files\JetBrains\CLion 2020.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\BTreePagination.dir/objects.a
-"D:\Program Files\MinGW\bin\ar.exe" cr CMakeFiles\BTreePagination.dir/objects.a @CMakeFiles\BTreePagination.dir\objects1.rsp
-"D:\Program Files\MinGW\bin\g++.exe" -g   -Wl,--whole-archive CMakeFiles\BTreePagination.dir/objects.a -Wl,--no-whole-archive  -o BTreePagination.exe -Wl,--out-implib,libBTreePagination.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\BTreePagination.dir\linklibs.rsp
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/BTreePagination.dir/btree_test.cpp.o CMakeFiles/BTreePagination.dir/PageManager.cpp.o CMakeFiles/BTreePagination.dir/InvertedIndex/node.cpp.o  -o BTreePagination 
