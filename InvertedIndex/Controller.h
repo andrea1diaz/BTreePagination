@@ -13,6 +13,8 @@
 #define BTREE_ORDER 4
 #define PAGE_SIZE  64
 
+Record r;
+
 class Controller {
 public:
 
@@ -28,7 +30,7 @@ public:
 			getline(file,value);
 			char key_char[25];
 			strcpy(key_char,key.c_str()); 
-			//std::cout<<"key: "<<key<<" value: "<<value<<"\n";
+			std::cout<<"key: "<<key<<" value: "<<value<<"\n";
 			if (this->Dictionary.find(key_char)==this->Dictionary.end()){
 				this->Dictionary[key_char];				
 				this->Dictionary[key_char][files]=temp;
@@ -52,33 +54,50 @@ public:
 	}
 	
 	void write(){
-		for (auto it:Dictionary){
-			char key[25];
-			strcpy(key,it.first.c_str());
-			node value[6];
-			for( int i=0;i<6;i++){
-				value[i]=it.second[i];
-			}
-			bt->insert(Record(key,value));
-		}
+        PageManager record_manager ("index.dat");
+        long id = 0;
+        for (auto it:Dictionary){
+            char key[25];
+            strcpy(key,it.first.c_str());
+            node value[6];
+            for( int i=0;i<6;i++){
+                value[i]=it.second[i];
+            }
+            record_manager.save(id, value);
+            bt->insert(Record(key, value, id));
+            id++;
+            if (id == 1) {
+                r = Record(key, value, id - 1);
+            }
+        }
 	}
 
 	void recover(std::string language_file) {
-        PageManager record_manager("index.dat");
+        /*PageManager record_manager("index.dat");
 	    std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("BTree.index");
         BTree<Record, BTREE_ORDER> bt(pm);
         //bt.print_tree();
 		//bt.print_tree();
 		Record to_find;
+		strcpy(to_find.key,"aardvark");
+		auto beg = bt.find(to_find);
+*/
+        PageManager record_manager("index.dat");
+        std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("BTree.index");
+        BTree<Record, BTREE_ORDER> bt(pm);
 
-		//strcpy(to_find.key,"aardvark");
-		auto beg = bt.find();
+        BTree<Record, BTREE_ORDER>::iterator iter = bt.find(r);
 
+        auto record = *iter;
+        Record to_find;
+        record_manager.recover(record.id, to_find);
+        std::cout << record.id << to_find.key << std::endl;
+		int a = 0;
     }
 
 	Controller(){
         bool trunc_file = true;
-        auto pm = std::make_shared<PageManager>("index.dat", trunc_file);
+        auto pm = std::make_shared<PageManager>("BTree.index", trunc_file);
         bt = new BTree<Record, BTREE_ORDER>(pm);
 	}
 

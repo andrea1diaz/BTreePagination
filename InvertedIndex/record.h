@@ -3,10 +3,11 @@
 
 
 class Record{
-    public:
+public:
+    long id;
     char key[25];
     node values[6];
-    Record( char _key[25],node _values[6] ){
+    Record( char _key[25],node _values[6], long _id){
         for(int i=0;i<25;i++ ){
             key[i]=_key[i];
         }
@@ -14,39 +15,28 @@ class Record{
             values[i]=_values[i];
         }
 
+        id = _id;
+
     }
     Record(){
         strncpy(key,"",25);
     }
     bool operator<(const Record &other){
-        for (int i=0;i<25;i++){
-            if (this->key[i]>other.key[i]){
-                return false;
-            }else if(this->key[i]<other.key[i]){
-                return true;
-            }
-        }
-        return false;
+        std::string s = this->key;
+        std::string o = other.key;
+        return (s.compare(o) > 0);
     }
 
     bool operator>(const Record &other){
-        for (int i=0;i<25;i++){
-            if (this->key[i]<other.key[i]){
-                return false;
-            }else if(this->key[i]>other.key[i]){
-                return true;
-            }
-        }
-        return false;
+        std::string s = this->key;
+        std::string o = other.key;
+        return (s.compare(o) < 0);
     }
 
     bool operator==(const Record &other) const{
-        for(int i=0;i<25;i++){
-            if(key[i]!=other.key[i]){
-                return false;
-            }
-        }
-        return true;
+        std::string s = this->key;
+        std::string o = other.key;
+        return s == o;
     }
 
     Record& operator=(const Record& other ){
