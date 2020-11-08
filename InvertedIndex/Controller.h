@@ -28,7 +28,7 @@ public:
 			getline(file,value);
 			char key_char[25];
 			strcpy(key_char,key.c_str()); 
-			std::cout<<"key: "<<key<<" value: "<<value<<"\n";
+			//std::cout<<"key: "<<key<<" value: "<<value<<"\n";
 			if (this->Dictionary.find(key_char)==this->Dictionary.end()){
 				this->Dictionary[key_char];				
 				this->Dictionary[key_char][files]=temp;
@@ -64,14 +64,15 @@ public:
 	}
 
 	void recover(std::string language_file) {
-        std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("index.dat");
+        PageManager record_manager("index.dat");
+	    std::shared_ptr<PageManager> pm = std::make_shared<PageManager>("BTree.index");
         BTree<Record, BTREE_ORDER> bt(pm);
         //bt.print_tree();
 		//bt.print_tree();
 		Record to_find;
-		strcpy(to_find.key,"aardvark");
-		auto beg =bt.find(to_find);
-		(*beg).print();
+
+		//strcpy(to_find.key,"aardvark");
+		auto beg = bt.find();
 
     }
 
